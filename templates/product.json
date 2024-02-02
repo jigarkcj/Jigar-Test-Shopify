@@ -20,6 +20,12 @@
           "settings": {
           }
         },
+        "variant_picker_GK8BBG": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button"
+          }
+        },
         "quantity_selector": {
           "type": "quantity_selector",
           "settings": {
@@ -48,6 +54,7 @@
         "vendor",
         "title",
         "price",
+        "variant_picker_GK8BBG",
         "quantity_selector",
         "buy_buttons",
         "description",
