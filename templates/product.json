@@ -61,7 +61,7 @@
         "share"
       ],
       "custom_css": [
-        ".product__media-toggle quick-add-hidden product__media-zoom-lightbox{display:none!important}"
+        ".product__media media media--transparent {display: none !important;}"
       ],
       "settings": {
         "enable_sticky_info": true,
