@@ -24,7 +24,7 @@
       {%- for option in product.options_with_values -%}
         <fieldset class="js product-form__input" style="background-image: url('{{ option.image_url }}')">
           <legend class="form__label">{{ option.name }}</legend>
-          {% render 'product-variant-options', product: product, option: option, block: block %}
+          {% render 'product-variant-options', product: product, option: option, block: block, image: image_url %}
         </fieldset>
       {%- endfor -%}
       {% if product.title == 'Handbag' %}
