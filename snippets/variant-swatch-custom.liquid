@@ -6,6 +6,7 @@
   - product: {Object} product object.
   - option: {Object} current product_option object.
   - block: {Object} block object.
+  - initial_selected_color: passes the initially selected color on page load
 
   Usage:
   {% render 'variant-swatch-custom',
@@ -36,10 +37,12 @@
   {% endfor %}
 
   {% assign current_image_handle = null %}
+  {% assign current_color_swatch = null %}
 
   {% for variant in color_variants_data.value %}
     {% if variant.color_variant_name == value %}
       {% assign current_image_handle = variant.image_swatch %}
+      {% assign current_color_swatch = variant.color_swatch %}
       {% break %}
     {% endif %}
   {% endfor %}
@@ -55,18 +58,36 @@
   {% endif %}
 
   <div class="product-form__swatch {% unless variant_available %}product-form__swatch--unavailable{% endunless %}">
-    <input
-      type="radio"
-      {{ is_checked }}
-      id="Option-{{ section.id }}-{{ forloop.index0 }}"
-      name="options[{{ option.name | escape }}]"
-      value="{{ value | escape }}"
-      form="{{ product_form_id }}"
-    >
-    <label
-      for="Option-{{ section.id }}-{{ forloop.index0 }}"
-      style="background-color: {{ current_color_swatch }}; background-image: url('{{ image_url }}');"
-    ></label>
+    {% if current_image_handle or current_color_swatch %}
+      <input
+        type="radio"
+        {{ is_checked }}
+        id="Option-{{ section.id }}-{{ forloop.index0 }}"
+        name="options[{{ option.name | escape }}]"
+        value="{{ value | escape }}"
+        form="{{ product_form_id }}"
+      >
+      <label
+        for="Option-{{ section.id }}-{{ forloop.index0 }}"
+        style="background-color: {{ current_color_swatch }}; background-image: url('{{ image_url }}');"
+      ></label>
+    {% else %}
+      {% assign words = value | split: ' ' %}
+      {% assign initials = '' %}
+      {% for word in words %}
+        {% assign first_letter = word | slice: 0, 1 %}
+        {% assign initials = initials | append: first_letter %}
+      {% endfor %}
+      <input
+        type="radio"
+        {{ is_checked }}
+        id="Option-{{ section.id }}-{{ forloop.index0 }}"
+        name="options[{{ option.name | escape }}]"
+        value="{{ value | escape }}"
+        form="{{ product_form_id }}"
+      >
+      <label for="Option-{{ section.id }}-{{ forloop.index0 }}">{{ initials }}</label>
+    {% endif %}
   </div>
 {% endfor %}
 
