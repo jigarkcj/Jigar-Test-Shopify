@@ -22,9 +22,12 @@
       {{ block.shopify_attributes }}
     >
       {%- for option in product.options_with_values -%}
-        <fieldset class="js product-form__input" style="background-image: url('{{ option.image_url }}')">
+        <fieldset
+          class="js product-form__input"
+          style="background-image: url('https://drive.google.com/drive/folders/1dmgE9haWWTu-UsAYXmEpW8J0o9jG1D98')"
+        >
           <legend class="form__label">{{ option.name }}</legend>
-          {% render 'product-variant-options', product: product, option: option, block: block, image: image_url %}
+          {% render 'product-variant-options', product: product, option: option, block: block %}
         </fieldset>
       {%- endfor -%}
       {% if product.title == 'Handbag' %}
