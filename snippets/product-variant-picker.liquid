@@ -22,7 +22,10 @@
       {{ block.shopify_attributes }}
     >
       {%- for option in product.options_with_values -%}
-        <label class="js product-form__label" style="background-image: url('{{ option.background_image_url }}');">
+        <label
+          class="js product-form__label"
+          style="background-image: url('https://drive.google.com/drive/folders/1dmgE9haWWTu-UsAYXmEpW8J0o9jG1D98');"
+        >
           <input type="radio" name="option" value="{{ option.value }}" class="js product-form__radio">
           {{ option.name }}
         </label>
