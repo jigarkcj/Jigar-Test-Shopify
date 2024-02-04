@@ -1,0 +1,175 @@
+{% comment %}
+  Description:
+  Renders product variant color swatch options. Also includes js to detect and change swatches and css styling.
+
+  Accepts:
+  - product: {Object} product object.
+  - option: {Object} current product_option object.
+  - block: {Object} block object.
+
+  Usage:
+  {% render 'variant-swatch-custom',
+    product: product,
+    option: option,
+    block: block
+  %}
+{% endcomment %}
+
+{% assign target_entry = null %}
+{% for entry in shop.metaobjects.color_variants_data.values %}
+  {% if entry.list_name == 'colorslist' %}
+    {% assign target_entry = entry %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% assign color_variants_data = target_entry.color_variants_json %}
+
+{% for value in option.values %}
+  {% assign variant_available = false %}
+  {% for variant in product.variants %}
+    {% if variant.title contains value and variant.available %}
+      {% assign variant_available = true %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+
+  {% assign current_image_handle = null %}
+
+  {% for variant in color_variants_data.value %}
+    {% if variant.color_variant_name == value %}
+      {% assign current_image_handle = variant.image_swatch %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+
+  {% if current_image_handle %}
+    {% assign image_url = current_image_handle | append: '.jpg' | file_url %}
+  {% endif %}
+
+  <div class="product-form__swatch {% unless variant_available %}product-form__swatch--unavailable{% endunless %}">
+    <input
+      type="radio"
+      {{ is_checked }}
+      id="Option-{{ section.id }}-{{ forloop.index0 }}"
+      name="options[{{ option.name | escape }}]"
+      value="{{ value | escape }}"
+      form="{{ product_form_id }}"
+    >
+    <label for="Option-{{ section.id }}-{{ forloop.index0 }}" style="background-image: url('{{ image_url }}');"></label>
+  </div>
+{% endfor %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      // Get a reference to the radio inputs and the display element
+      var colorInputs = document.querySelectorAll('.product-form__swatch input[type="radio"]');
+      var colorDisplay = document.getElementById('selectedColor');
+
+      // Function to handle color selection change
+      function updateColorDisplay(e) {
+          if (e.target.checked) {
+              colorDisplay.textContent = e.target.value;
+          }
+      }
+
+      // Add event listeners to each radio input
+      colorInputs.forEach(function(input) {
+          input.addEventListener('change', updateColorDisplay);
+      });
+  });
+</script>
+
+<style>
+   .product-form__swatch label {
+      width: 15px;
+      height: 15px;
+      font-size: 8px;
+  }
+
+   .product-form__swatch {
+      margin-right: 0px;
+  }
+
+
+  .product-form__swatch {
+      display: inline-block;
+      margin-right: 5px;
+  }
+
+  .product-form__swatch input {
+      display: none;
+  }
+
+  .product-form__color-input .product-form__swatch label {
+      width: 45px;
+      height: 45px;
+  }
+
+  .product-form__swatch label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      vertical-align: middle;
+      border: 1px solid #ddd;
+      border-radius: 50%; /* Make the label circular */
+      font-size: 12px; /* Adjust this value as needed */
+      font-weight: bold; /* Optional: make the text bold */
+      border: 2px solid #ddd;
+      transition: border-color 0.3s ease; /* smoothens the border color transition */
+  }
+
+  .product-form__swatch input, .product-form__swatch label {
+      margin: 0;
+      padding: 0;
+  }
+
+  .product-form__swatch label:hover {
+      border-color: #333; /* Darken the border color on hover */
+      border-width: 3px !important;  /* Thicken the border on hover */
+  }
+
+  .product-form__swatch input:checked + label {
+      border-color: #000; /* Darker color for the selected swatch's outer border */
+      border-width: 3px; /* Thicker border */
+      box-shadow: inset 0 0 0 3px #fff; /* Apply the inner border only to the selected label */
+  }
+
+
+  .product-form__swatch--unavailable label {
+    opacity: 0.5;
+    position: relative;
+  }
+
+  .product-form__swatch--unavailable label::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: linear-gradient(to bottom right, transparent 45%, rgba(255, 0, 0, 0.6) 50%, transparent 55%); /* red diagonal line */
+      pointer-events: none; /* make sure the line doesn't interfere with any click events */
+  }
+
+  .product-form__swatch--unavailable label {
+      position: relative;
+      opacity: 0.5;
+  }
+
+  .product-form__swatch--unavailable label::after {
+      content: '';
+      position: absolute;
+      top: 0px;    /* Slight offset to keep the line inside the border */
+      right: 0px;  /* Adjust these values as needed */
+      bottom: 0px;
+      left: 0px;
+      background: linear-gradient(to bottom right, transparent 45%, rgba(0, 0, 0, 0.5) 50%, transparent 55%);
+      border-radius: 50%; /* Ensure the pseudo-element is also circular */
+      pointer-events: none;
+  }
+
+  .card__information {
+      padding-top: 5px;
+  }
+</style>
