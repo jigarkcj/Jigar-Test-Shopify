@@ -54,7 +54,7 @@
   {% endif %}
 
   {% if current_image_handle %}
-    {% assign image_url = current_image_handle | append: '.jpg' | file_url %}
+    {% assign image_url = current_image_handle | append: '.png' | file_url %}
   {% endif %}
 
   <div class="product-form__swatch {% unless variant_available %}product-form__swatch--unavailable{% endunless %}">
