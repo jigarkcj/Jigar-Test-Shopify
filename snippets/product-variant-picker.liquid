@@ -22,10 +22,10 @@
       {{ block.shopify_attributes }}
     >
       {%- for option in product.options_with_values -%}
-        <fieldset class="js product-form__input">
-          <legend class="form__label">{{ option.name }} test</legend>
-          {% render 'product-variant-options', product: product, option: option, block: block %}
-        </fieldset>
+        <label class="js product-form__label" style="background-image: url('{{ option.background_image_url }}');">
+          <input type="radio" name="option" value="{{ option.value }}" class="js product-form__radio">
+          {{ option.name }}
+        </label>
       {%- endfor -%}
       <script type="application/json">
         {{ product.variants | json }}
