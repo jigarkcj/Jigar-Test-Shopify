@@ -11,7 +11,8 @@
   {% render 'variant-swatch-custom',
     product: product,
     option: option,
-    block: block
+    block: block,
+    initial_selected_color: initial_selected_color
   %}
 {% endcomment %}
 
@@ -43,6 +44,12 @@
     {% endif %}
   {% endfor %}
 
+  {% if value == initial_selected_color %}
+    {% assign is_checked = 'checked="checked"' %}
+  {% else %}
+    {% assign is_checked = '' %}
+  {% endif %}
+
   {% if current_image_handle %}
     {% assign image_url = current_image_handle | append: '.jpg' | file_url %}
   {% endif %}
@@ -56,7 +63,10 @@
       value="{{ value | escape }}"
       form="{{ product_form_id }}"
     >
-    <label for="Option-{{ section.id }}-{{ forloop.index0 }}" style="background-image: url('{{ image_url }}');"></label>
+    <label
+      for="Option-{{ section.id }}-{{ forloop.index0 }}"
+      style="background-color: {{ current_color_swatch }}; background-image: url('{{ image_url }}');"
+    ></label>
   </div>
 {% endfor %}
 
@@ -81,14 +91,18 @@
 </script>
 
 <style>
-   .product-form__swatch label {
+  .collection-form__colors .product-form__swatch label {
       width: 15px;
       height: 15px;
       font-size: 8px;
   }
 
-   .product-form__swatch {
+  .collection-form__colors .product-form__swatch {
       margin-right: 0px;
+  }
+
+  .collection-form__colors {
+      margin-top: 5px;
   }
 
 

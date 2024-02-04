@@ -22,9 +22,29 @@
       {{ block.shopify_attributes }}
     >
       {%- for option in product.options_with_values -%}
-        <fieldset class="js product-form__input">
-          <legend class="form__label">{{ option.name }}</legend>
-          {% render 'product-variant-options', product: product, option: option, block: block %}
+        <fieldset class="js product-form__input {% if option.name == 'Color' %}product-form__color-input{% endif %}">
+          {% if option.name == 'Color' %}
+            {% assign color_index = -1 %}
+            {% for option in product.options %}
+              {% if option == 'Color' %}
+                {% assign color_index = forloop.index0 %}
+              {% endif %}
+            {% endfor %}
+            {% assign initial_selected_color = product.selected_or_first_available_variant.options[color_index] %}
+            <legend class="form__label">
+              {{ option.name }}:
+              <span id="selectedColor">{{ initial_selected_color }}</span>
+            </legend>
+            {% render 'variant-swatch-custom',
+              product: product,
+              option: option,
+              section: section,
+              initial_selected_color: initial_selected_color
+            %}
+          {% else %}
+            <legend class="form__label">{{ option.name }}</legend>
+            {% render 'product-variant-options', product: product, option: option, block: block %}
+          {% endif %}
         </fieldset>
       {%- endfor -%}
       <script type="application/json">
