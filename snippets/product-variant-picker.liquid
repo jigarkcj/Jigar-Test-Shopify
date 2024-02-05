@@ -11,7 +11,7 @@
 {% endcomment %}
 {%- unless product.has_only_default_variant -%}
   {%- if block.settings.picker_type == 'button' -%}
-    {{ product.id }}
+    {{ product.tags }}
     <variant-radios
       id="variant-radios-{{ section.id }}"
       class="no-js-hidden"
@@ -25,7 +25,6 @@
       {%- for option in product.options_with_values -%}
         <fieldset class="js product-form__input">
           <legend class="form__label">{{ option.name }}</legend>
-          {{ product.id }}
           {% render 'product-variant-options', product: product, option: option, block: block %}
         </fieldset>
       {%- endfor -%}
