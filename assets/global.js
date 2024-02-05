@@ -1264,28 +1264,3 @@ class ProductRecommendations extends HTMLElement {
 }
 
 customElements.define('product-recommendations', ProductRecommendations);
-
-const addToCartBtn = document.querySelector("#addToCart")
-
-addToCartBtn.addEventListener('click', async function() {
-  const extraItem = {
-    items: [
-      {
-        id: 6984689582166, // ID of the variant you want to add to the cart
-        quantity: 1,
-      },
-    ],
-  };
-
-  const response = await fetch(window.Shopify.routes.root + 'cart/add.js', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(extraItem),
-  });
-
-  if (!response.ok) console.log('something went wrong');
-
-  console.log(await respons.json());
-});
