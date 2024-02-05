@@ -10,24 +10,30 @@
   {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
 {%- unless product.has_only_default_variant -%}
-  {% comment %} {%- if block.settings.picker_type == 'button' -%} {% endcomment %}
-  <span>{{ product.has_only_default_variant }}</span>
   <variant-radios
-    id="variant-radios-{{ section.id }}"
     class="no-js-hidden"
     data-section="{{ section.id }}"
     data-url="{{ product.url }}"
-    {% if update_url == false %}
-      data-update-url="false"
-    {% endif %}
     {{ block.shopify_attributes }}
   >
     {%- for option in product.options_with_values -%}
-      <fieldset
-        class="js product-form__input {% unless forloop.first %}hidden{% endunless %}"
-      >
+      <fieldset class="js product-form__input {% unless forloop.first %}hidden{% endunless %}">
         <legend class="form__label">{{ option.name }}</legend>
-        {% render 'product-variant-options', product: product, option: option, block: block %}
+        {%- for value in option.values -%}
+          <input
+            type="radio"
+            id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+            name="{{ option.name }}"
+            value="{{ value | escape }}"
+            form="{{ product_form_id }}"
+            {% if option.selected_value == value %}
+              checked
+            {% endif %}
+          >
+          <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+            {{ value }}
+          </label>
+        {%- endfor -%}
       </fieldset>
     {%- endfor -%}
     <script type="application/json">
@@ -35,19 +41,13 @@
     </script>
   </variant-radios>
   <variant-selects
-    id="variant-selects-{{ section.id }}"
     class="no-js-hidden"
     data-section="{{ section.id }}"
     data-url="{{ product.url }}"
-    {% if update_url == false %}
-      data-update-url="false"
-    {% endif %}
     {{ block.shopify_attributes }}
   >
     {%- for option in product.options_with_values -%}
-      <div
-        class="product-form__input product-form__input--dropdown {% if forloop.first %}hidden{% endif %}"
-      >
+      <div class="product-form__input product-form__input--dropdown {% if forloop.first %}hidden{% endif %}">
         <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
           {{ option.name }}
         </label>
@@ -58,7 +58,16 @@
             name="options[{{ option.name | escape }}]"
             form="{{ product_form_id }}"
           >
-            {% render 'product-variant-options', product: product, option: option, block: block %}
+            {%- for value in option.values -%}
+              <option
+                value="{{ value | escape }}"
+                {% if option.selected_value == value %}
+                  selected="selected"
+                {% endif %}
+              >
+                {{ value }}
+              </option>
+            {%- endfor -%}
           </select>
           {% render 'icon-caret' %}
         </div>
@@ -69,7 +78,6 @@
       {{ product.variants | json }}
     </script>
   </variant-selects>
-  {% comment %} {%- endif -%} {% endcomment %}
 {%- endunless -%}
 
 <noscript class="product-form__noscript-wrapper-{{ section.id }}">
