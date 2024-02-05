@@ -24,10 +24,7 @@
   >
     {%- for option in product.options_with_values -%}
       <fieldset
-        class="js product-form__input"
-        {% unless forloop.first %}
-          hidden
-        {% endunless %}
+        class="js product-form__input {% unless forloop.first %}hidden{% endunless %}"
       >
         <legend class="form__label">{{ option.name }}</legend>
         {% render 'product-variant-options', product: product, option: option, block: block %}
@@ -50,10 +47,7 @@
   >
     {%- for option in product.options_with_values -%}
       <div
-        class="product-form__input product-form__input--dropdown"
-        {% if forloop.first %}
-          hidden
-        {% endif %}
+        class="product-form__input product-form__input--dropdown {% if forloop.first %}hidden{% endif %}"
       >
         <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
           {{ option.name }}
