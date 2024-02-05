@@ -23,6 +23,7 @@
     >
       {%- for option in product.options_with_values -%}
         {% if option.name == 'Size' and product.title == 'Handbag' %}
+          {%- assign block.settings.picker_type = 'dropdown' -%}
           <div class="product-form__input product-form__input--dropdown">
             <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
               {{ option.name }}
