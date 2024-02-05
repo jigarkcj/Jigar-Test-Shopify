@@ -59,8 +59,8 @@
         class="disabled"
       {% endif %}
     >
-    <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
-      {{ value | append: 'hello' }}
+    <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}" style="background-color:red">
+      {{ value }}
       <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
     </label>
   {%- elsif block.settings.picker_type == 'dropdown' -%}
