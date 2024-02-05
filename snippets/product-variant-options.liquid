@@ -62,7 +62,7 @@
     {% if option.name == 'Color' and product.title == 'Handbag' %}
       <label
         for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
-        style="background-image: url({{ 'https://cdn.shopify.com/s/files/1/0572/7987/3110/files/' | append: value | append: '.png' | downcase}});"
+        style="background-size:100%; height:50px; width:50px; background-image: url({{ 'https://cdn.shopify.com/s/files/1/0572/7987/3110/files/' | append: value | append: '.png' | downcase}});"
       >
         {{ value }}
         <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
