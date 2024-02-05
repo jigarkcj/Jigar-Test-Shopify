@@ -18,7 +18,10 @@
   >
     {%- for option in product.options_with_values -%}
       <fieldset class="js product-form__input {% unless forloop.first %}hidden{% endunless %}">
-        <legend class="form__label">{{ option.name }} : {{ value }}</legend>
+        <legend class="form__label">
+          {{ option.name }}
+          {{ option.selected_value }}
+        </legend>
         {%- for value in option.values -%}
           <input
             type="radio"
