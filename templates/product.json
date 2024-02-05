@@ -61,7 +61,7 @@
         "share"
       ],
       "custom_css": [
-        ".product__media media media--transparent {display: none !important;}"
+
       ],
       "settings": {
         "enable_sticky_info": true,
