@@ -20,7 +20,7 @@
       <fieldset class="js product-form__input {% unless forloop.first %}hidden{% endunless %}">
         <legend class="form__label">
           {{ option.name }}
-          {{ option.selected_value }}
+          {{ forloop.index0 }}
         </legend>
         {%- for value in option.values -%}
           <input
