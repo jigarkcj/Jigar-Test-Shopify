@@ -59,7 +59,7 @@
         class="disabled"
       {% endif %}
     >
-    {% if option.name == 'Color' and product.title="Handbag" %}
+    {% if option.name == 'Color' and product.title='Handbag' %}
       <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}" style="background-color:blue">
         {{ value }}
         <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
