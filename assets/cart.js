@@ -13,6 +13,7 @@ class CartRemoveButton extends HTMLElement {
 customElements.define('cart-remove-button', CartRemoveButton);
 
 class CartItems extends HTMLElement {
+  debugger;
   constructor() {
     super();
     this.lineItemStatusElement =
@@ -43,7 +44,6 @@ class CartItems extends HTMLElement {
   }
 
   onChange(event) {
-    debugger;
     this.updateQuantity(event.target.dataset.index, event.target.value, document.activeElement.getAttribute('name'), event.target.dataset.quantityVariantId);
   }
 
