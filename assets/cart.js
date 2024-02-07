@@ -43,6 +43,7 @@ class CartItems extends HTMLElement {
   }
 
   onChange(event) {
+    debugger;
     this.updateQuantity(event.target.dataset.index, event.target.value, document.activeElement.getAttribute('name'), event.target.dataset.quantityVariantId);
   }
 
