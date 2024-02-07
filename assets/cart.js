@@ -105,7 +105,7 @@ class CartItems extends HTMLElement {
 
   updateQuantity(line, quantity, name, variantId) {
     this.enableLoading(line);
-
+    debugger;
     const body = JSON.stringify({
       line,
       quantity,
