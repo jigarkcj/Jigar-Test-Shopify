@@ -249,7 +249,7 @@ let formData = {
   'quantity': 1
   }]
 };
-fetch(`${routes.cart_url}?section_id=main-cart-items`, {
+fetch(`${routes.cart_url}`, {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json'
