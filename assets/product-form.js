@@ -96,7 +96,7 @@ if (!customElements.get('product-form')) {
           .finally(() => {
             let formData = {
  'items': [{
-  'id': 6984689582166,
+  'id': 6984689877078,
   'quantity': 1
   }]
 };
