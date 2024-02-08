@@ -2,6 +2,7 @@ if (!customElements.get('quantity-popover')) {
   customElements.define(
     'quantity-popover',
     class QuantityPopover extends HTMLElement {
+        console.log("test");
       constructor() {
         super();
         this.mql = window.matchMedia('(min-width: 990px)');
