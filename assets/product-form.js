@@ -94,6 +94,25 @@ if (!customElements.get('product-form')) {
             console.error(e);
           })
           .finally(() => {
+            let formData = {
+ 'items': [{
+  'id': 6984689582166,
+  'quantity': 1
+  }]
+};
+fetch(`${routes.cart_add_url}`, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(formData)
+})
+.then(response => {
+  return response.json();
+})
+.catch((error) => {
+  console.error('Error:', error);
+});
             this.submitButton.classList.remove('loading');
             if (this.cart && this.cart.classList.contains('is-empty')) this.cart.classList.remove('is-empty');
             if (!this.error) this.submitButton.removeAttribute('aria-disabled');
