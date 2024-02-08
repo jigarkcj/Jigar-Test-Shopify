@@ -249,7 +249,7 @@ let formData = {
   'quantity': 1
   }]
 };
-fetch(window.Shopify.routes.root + 'cart/add', {
+fetch(`${routes.cart_url}?section_id=main-cart-items`, {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json'
