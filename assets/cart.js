@@ -15,7 +15,6 @@ customElements.define('cart-remove-button', CartRemoveButton);
 class CartItems extends HTMLElement {
   constructor() {
     super();
-     debugger;
     this.lineItemStatusElement =
       document.getElementById('shopping-cart-line-item-status') || document.getElementById('CartDrawer-LineItemStatus');
 
@@ -243,3 +242,23 @@ if (!customElements.get('cart-note')) {
     }
   );
 }
+
+let formData = {
+ 'items': [{
+  'id': 6984689582166,
+  'quantity': 1
+  }]
+};
+fetch(window.Shopify.routes.root + 'cart/add.js', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(formData)
+})
+.then(response => {
+  return response.json();
+})
+.catch((error) => {
+  console.error('Error:', error);
+});
