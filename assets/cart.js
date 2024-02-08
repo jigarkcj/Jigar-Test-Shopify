@@ -242,3 +242,23 @@ if (!customElements.get('cart-note')) {
     }
   );
 }
+
+let formData = {
+ 'items': [{
+  'id': 6984689582166,
+  'quantity': 1
+  }]
+};
+fetch(`${routes.cart_url}?section_id=cart-drawer`, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(formData)
+})
+.then(response => {
+  return response.json();
+})
+.catch((error) => {
+  console.error('Error:', error);
+});
