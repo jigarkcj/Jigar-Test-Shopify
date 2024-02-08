@@ -12,7 +12,6 @@ if (!customElements.get('quantity-popover')) {
         this.closeButton = this.querySelector('.button-close');
         this.variantInfo = this.querySelector('.quantity-popover-container');
         this.eventMouseEnterHappened = false;
-         debugger;
 
         if (this.closeButton) {
           this.closeButton.addEventListener('click', this.closePopover.bind(this));
