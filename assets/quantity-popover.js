@@ -2,7 +2,6 @@ if (!customElements.get('quantity-popover')) {
   customElements.define(
     'quantity-popover',
     class QuantityPopover extends HTMLElement {
-      debugger;
       constructor() {
         super();
         this.mql = window.matchMedia('(min-width: 990px)');
@@ -13,6 +12,7 @@ if (!customElements.get('quantity-popover')) {
         this.closeButton = this.querySelector('.button-close');
         this.variantInfo = this.querySelector('.quantity-popover-container');
         this.eventMouseEnterHappened = false;
+         debugger;
 
         if (this.closeButton) {
           this.closeButton.addEventListener('click', this.closePopover.bind(this));
