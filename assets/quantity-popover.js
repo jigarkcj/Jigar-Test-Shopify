@@ -79,7 +79,7 @@ if (!customElements.get('quantity-popover')) {
   );
 }
 
-document.addEventListener('onLoad', updateCartItems);
+document.addEventListener('onload', updateCartItems);
 
 function updateCartItems() {
   let updates = {
