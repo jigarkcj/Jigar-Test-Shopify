@@ -79,7 +79,7 @@ if (!customElements.get('quantity-popover')) {
   );
 }
 
-document.addEventListener('DOMContentLoaded', updateCartItems);
+document.addEventListener('shopify:section:load', updateCartItems);
 
 function updateCartItems() {
   let updates = {
