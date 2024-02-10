@@ -83,7 +83,8 @@ document.addEventListener('DOMContentLoaded', updateCartItems);
 
 function updateCartItems() {
   let updates = {
-  40632205082710: 1
+  40632205082710: 1,
+40632205115478:1
 };
 fetch(window.Shopify.routes.root + 'cart/update.js', {
   method: 'POST',
