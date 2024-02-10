@@ -82,10 +82,10 @@ if (!customElements.get('quantity-popover')) {
 document.addEventListener('DOMContentLoaded', updateCartItems);
 
 function updateCartItems() {
-let formData = {
- 'items': [{
-  'id': 36110175633573,
-  'quantity': 2
+  let updates = {
+    'items': [{
+  'id': 40618704633942,
+  'quantity': 1
   }]
 };
 fetch(window.Shopify.routes.root + 'cart/add.js', {
@@ -93,7 +93,7 @@ fetch(window.Shopify.routes.root + 'cart/add.js', {
   headers: {
     'Content-Type': 'application/json'
   },
-  body: JSON.stringify({ formData })
+  body: JSON.stringify({ updates })
 })
 .then(response => {
   return response.json();
