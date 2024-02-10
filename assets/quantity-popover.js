@@ -79,13 +79,13 @@ if (!customElements.get('quantity-popover')) {
   );
 }
 
-document.addEventListener('onload', updateCartItems);
+document.addEventListener('DOMContentLoaded', updateCartItems);
 
 function updateCartItems() {
   let updates = {
   40618704633942: 1,
 };
-fetch(window.Shopify.routes.root + 'cart/update.js', {
+fetch(window.Shopify.routes.root + 'cart/add.js', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json'
