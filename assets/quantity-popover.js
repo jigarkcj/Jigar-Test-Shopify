@@ -79,26 +79,26 @@ if (!customElements.get('quantity-popover')) {
   );
 }
 
-document.addEventListener('DOMContentLoaded', updateCartItems);
+// document.addEventListener('DOMContentLoaded', updateCartItems);
 
-function updateCartItems() {
-  let formData = {
- 'items': [{
-  'id': 40618704633942,
-  'quantity': 1
-  }]
-};
-fetch(window.Shopify.routes.root + 'cart/add.js', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify(formData)
-})
-.then(response => {
-  return response.json();
-})
-.catch((error) => {
-  console.error('Error:', error);
-});
-}
+// function updateCartItems() {
+//   let formData = {
+//  'items': [{
+//   'id': 40618704633942,
+//   'quantity': 1
+//   }]
+// };
+// fetch(window.Shopify.routes.root + 'cart/add.js', {
+//   method: 'POST',
+//   headers: {
+//     'Content-Type': 'application/json'
+//   },
+//   body: JSON.stringify(formData)
+// })
+// .then(response => {
+//   return response.json();
+// })
+// .catch((error) => {
+//   console.error('Error:', error);
+// });
+// }
