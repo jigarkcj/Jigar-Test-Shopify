@@ -78,3 +78,25 @@ if (!customElements.get('quantity-popover')) {
     }
   );
 }
+
+document.addEventListener('DOMContentLoaded', updateCartItems);
+
+function updateCartItems() {
+  let updates = {
+  6984689582166: 1
+};
+fetch(window.Shopify.routes.root + 'cart/update.js', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ updates })
+})
+.then(response => {
+  return response.json();
+})
+.catch((error) => {
+  console.error('Error:', error);
+});
+  
+}
