@@ -264,3 +264,7 @@ if (!customElements.get('cart-note')) {
     }
   );
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+  history.replaceState({}, document.title, window.location.pathname);
+}
