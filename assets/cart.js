@@ -172,7 +172,7 @@ class CartItems extends HTMLElement {
                 'id': 40618704633942,
                 'quantity': 1
             };
-            fetch(window.Shopify.routes.root + 'cart/change.js', {
+            fetch(window.Shopify.routes.root + 'cart/change', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
