@@ -710,9 +710,12 @@
         document.querySelector('#Variants-{{ section.id }}').addEventListener('change', function (event) {
           hiddenInput.value = event.currentTarget.value;
         });
-      debugger;
-      history.replaceState({}, document.title, window.location.pathname);
       });
+      function removeURLParams() {
+        history.replaceState({}, document.title, window.location.pathname);
+      }
+
+      window.onload = removeURLParams;
     </script>
 
     {%- liquid
