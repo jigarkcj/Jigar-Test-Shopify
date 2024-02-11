@@ -169,7 +169,7 @@ class CartItems extends HTMLElement {
        if (parsedState.items_removed[0].variant_id == '40632205082710') {
               let formData ={
                 'id': 40618704633942,
-                'quantity': 1
+                'quantity': 0
             };
             fetch(window.Shopify.routes.root + 'cart/change', {
               method: 'POST',
