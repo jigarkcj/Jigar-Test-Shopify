@@ -166,7 +166,6 @@ class CartItems extends HTMLElement {
         } else if (document.querySelector('.cart-item') && cartDrawerWrapper) {
           trapFocus(cartDrawerWrapper, document.querySelector('.cart-item__name'));
         }
-        parsedState.items_removed[0].variant_id
        if (parsedState.items_removed[0].variant_id == '40632205082710') {
               let formData ={
                 'id': 40618704633942,
