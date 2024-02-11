@@ -95,22 +95,25 @@ window.addEventListener('DOMContentLoaded', () => {
   initializeScrollAnimationTrigger();
   initializeScrollZoomAnimationTrigger();
   debugger;
- var productMedia = document.querySelector('.product__media.media.media--transparent');
+ // Get the <li> element with the specified ID
+  var listItem = document.getElementById('Slide-template--15140955750486__main-24701835837526');
 
-      if (productMedia) {
-        // Get the image element inside the div
-        var imageElement = productMedia.querySelector('img');
+  if (listItem) {
+    // Get the <div> element inside li
+    var productMedia = listItem.querySelector('.product__media.media.media--transparent');
 
-        if (imageElement) {
-          var imageUrl = imageElement.getAttribute('src');
+    if (productMedia) {
+      var imageElement = productMedia.querySelector('img');
 
-          // Check if the image URL contains the specific pattern
-          if (imageUrl.includes('black-bag-over-the-shoulder')) {
-            debugger;
-            imageElement.style.display = 'none';
-          }
+      if (imageElement) {
+        var imageUrl = imageElement.getAttribute('src');
+
+        if (imageUrl.includes('black-bag-over-the-shoulder')) {
+          imageElement.style.display = 'none';
         }
       }
+    }
+  }
 });
 
 if (Shopify.designMode) {
