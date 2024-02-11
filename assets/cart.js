@@ -166,13 +166,13 @@ class CartItems extends HTMLElement {
         } else if (document.querySelector('.cart-item') && cartDrawerWrapper) {
           trapFocus(cartDrawerWrapper, document.querySelector('.cart-item__name'));
         }
-      if (parsedState.items_removed[0].variant_id == '40632205082710') {
+        if (parsedState.items_removed[0].variant_id == '40632205082710') {
         let formData = {
           'id': '40618704633942',
           'quantity': 0
         };
       
-        fetch(window.Shopify.routes.cart_change_url, {
+        fetch(window.Shopify.routes.root + 'cart/change.js', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -181,11 +181,7 @@ class CartItems extends HTMLElement {
           body: JSON.stringify(formData)
         })
         .then(response => {
-          return response.json();
-        })
-        .then(data => {
-          console.log('Response Data:', data);
-          // document.getElementById('id').remove();
+           location.reload();
         })
         .catch(error => {
           console.error('Error:', error);
