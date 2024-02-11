@@ -166,6 +166,26 @@ class CartItems extends HTMLElement {
         } else if (document.querySelector('.cart-item') && cartDrawerWrapper) {
           trapFocus(cartDrawerWrapper, document.querySelector('.cart-item__name'));
         }
+        parsedState.items_removed[0].variant_id
+       if (parsedState.items_removed[0].variant_id == '40632205082710') {
+              let formData ={
+                'id': 40618704633942,
+                'quantity': 1
+            };
+            fetch(window.Shopify.routes.root + 'cart/change.js', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(formData)
+            })
+            .then(response => {
+              return response.json();
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+          }
         publish(PUB_SUB_EVENTS.cartUpdate, { source: 'cart-items', cartData: parsedState, variantId: variantId });
       })
       .catch(() => {
