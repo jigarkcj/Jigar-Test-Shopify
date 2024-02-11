@@ -179,6 +179,8 @@ class CartItems extends HTMLElement {
               body: JSON.stringify(formData)
             })
             .then(response => {
+              console.log('Response Status:', response.status);
+              console.log('Response Text:', response.statusText);
               return response.json();
             })
             .catch((error) => {
