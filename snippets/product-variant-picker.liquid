@@ -80,6 +80,10 @@
 
     <script type="application/json">
       {{ product.variants | json }}
+      document.querySelector('select.select__select').addEventListener('change',function () {
+        debugger;
+        window.location.reload(true);
+      });
     </script>
   </variant-selects>
 {%- endunless -%}
