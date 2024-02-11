@@ -94,6 +94,7 @@ function percentageSeen(element) {
 window.addEventListener('DOMContentLoaded', () => {
   initializeScrollAnimationTrigger();
   initializeScrollZoomAnimationTrigger();
+  debugger;
  var productMedia = document.querySelector('.product__media.media.media--transparent');
 
       if (productMedia) {
