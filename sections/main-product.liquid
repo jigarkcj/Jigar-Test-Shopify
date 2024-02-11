@@ -715,9 +715,18 @@
         var currentUrl = window.location.href;
         var hostUrl = window.location.origin;
         var redirectUrl = hostUrl + "/products/handbag?variant=40632199577686";
-        if (currentUrl.includes("handbag") && currentUrl !== redirectUrl) {
-          var hostUrl = window.location.origin;
-          window.location.href = hostUrl + "/products/handbag?variant=40632199577686";
+
+        if (currentUrl !== redirectUrl && currentUrl.includes("handbag")) {
+          // Set a flag to indicate that redirect has been performed
+          sessionStorage.setItem('redirected', true);
+          window.location.href = redirectUrl;
+        } else {
+          // Check if the redirect has been performed previously
+          var redirected = sessionStorage.getItem('redirected');
+          if (redirected) {
+            // Clear the flag
+            sessionStorage.removeItem('redirected');
+          }
         }
       }
 
