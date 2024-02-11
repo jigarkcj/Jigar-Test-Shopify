@@ -712,13 +712,14 @@
         });
       });
       function checkAndRedirect() {
-        var currentUrl = window.location.href;
-        var hostUrl = window.location.origin;
-        var redirectUrl = hostUrl + "/products/handbag?variant=40632199577686";
-        if (currentUrl.includes("handbag") && currentUrl !== redirectUrl) {
+          var currentUrl = window.location.href;
           var hostUrl = window.location.origin;
-          window.location.href = hostUrl + "/products/handbag?variant=40632199577686";
-        }
+          var redirectUrl = hostUrl + "/products/handbag?variant=40632199577686";
+
+          // Check if the current URL is not the redirect URL and contains "handbag"
+          if (currentUrl !== redirectUrl && currentUrl.includes("handbag")) {
+            window.location.href = redirectUrl;
+          }
       }
 
       window.onload = checkAndRedirect;
