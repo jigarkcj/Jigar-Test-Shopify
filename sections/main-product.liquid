@@ -688,6 +688,7 @@
 
     <script>
       document.addEventListener('DOMContentLoaded', function () {
+        hideProductThumbnailImage();
         function isIE() {
           const ua = window.navigator.userAgent;
           const msie = ua.indexOf('MSIE ');
@@ -728,10 +729,8 @@
             sessionStorage.removeItem('redirected');
           }
         }
-        hideProductThumbnailImage()
       }
       function hideProductThumbnailImage() {
-        // debugger;
         var productMedia = document.querySelector('.product__media.media.media--transparent');
 
         if (productMedia) {
