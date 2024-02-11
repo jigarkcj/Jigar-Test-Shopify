@@ -715,8 +715,9 @@
         var currentUrl = window.location.href;
         var hostUrl = window.location.origin;
         var redirectUrl = hostUrl + "/products/handbag?variant=40632199577686";
+        var initialPageLoadUrl = hostUrl + "/products/handbag"
 
-        if (currentUrl !== redirectUrl && currentUrl.includes("handbag")) {
+        if (currentUrl !== redirectUrl && currentUrl.includes("handbag") && currentUrl !== initialPageLoadUrl) {
           // Set a flag to indicate that redirect has been performed
           sessionStorage.setItem('redirected', true);
           window.location.href = redirectUrl;
