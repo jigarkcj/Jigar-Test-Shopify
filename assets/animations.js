@@ -94,6 +94,22 @@ function percentageSeen(element) {
 window.addEventListener('DOMContentLoaded', () => {
   initializeScrollAnimationTrigger();
   initializeScrollZoomAnimationTrigger();
+ var productMedia = document.querySelector('.product__media.media.media--transparent');
+
+      if (productMedia) {
+        // Get the image element inside the div
+        var imageElement = productMedia.querySelector('img');
+
+        if (imageElement) {
+          var imageUrl = imageElement.getAttribute('src');
+
+          // Check if the image URL contains the specific pattern
+          if (imageUrl.includes('black-bag-over-the-shoulder')) {
+            debugger;
+            imageElement.style.display = 'none';
+          }
+        }
+      }
 });
 
 if (Shopify.designMode) {
