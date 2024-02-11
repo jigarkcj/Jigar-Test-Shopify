@@ -711,11 +711,15 @@
           hiddenInput.value = event.currentTarget.value;
         });
       });
-      function removeURLParams() {
-        history.replaceState({}, document.title, window.location.pathname);
+      function checkAndRedirect() {
+        var currentUrl = window.location.href;
+        if (currentUrl.includes("handbag")) {
+          var hostUrl = window.location.origin;
+          window.location.href = hostUrl + "/products/handbag?variant=40632199577686";
+        }
       }
 
-      window.onload = removeURLParams;
+      window.onload = checkAndRedirect;
     </script>
 
     {%- liquid
