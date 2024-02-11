@@ -94,25 +94,12 @@ function percentageSeen(element) {
 window.addEventListener('DOMContentLoaded', () => {
   initializeScrollAnimationTrigger();
   initializeScrollZoomAnimationTrigger();
-  debugger;
- // Get the <li> element with the specified ID
+  // Get the <li> element for the leather bag thumbnail image
   var listItem = document.getElementById('Slide-template--15140955750486__main-24701835837526');
 
   if (listItem) {
-    // Get the <div> element inside li
-    var productMedia = listItem.querySelector('.product__media.media.media--transparent');
-
-    if (productMedia) {
-      var imageElement = productMedia.querySelector('img');
-
-      if (imageElement) {
-        var imageUrl = imageElement.getAttribute('src');
-
-        if (imageUrl.includes('black-bag-over-the-shoulder')) {
-          imageElement.style.display = 'none';
-        }
-      }
-    }
+    // Hide the <li> element
+    listItem.style.display = 'none';
   }
 });
 
