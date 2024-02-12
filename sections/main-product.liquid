@@ -687,50 +687,50 @@
     {%- endif -%}
 
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        function isIE() {
-          const ua = window.navigator.userAgent;
-          const msie = ua.indexOf('MSIE ');
-          const trident = ua.indexOf('Trident/');
+       document.addEventListener('DOMContentLoaded', function () {
+         function isIE() {
+           const ua = window.navigator.userAgent;
+           const msie = ua.indexOf('MSIE ');
+           const trident = ua.indexOf('Trident/');
 
-          return msie > 0 || trident > 0;
-        }
+           return msie > 0 || trident > 0;
+         }
 
-        if (!isIE()) return;
-        const hiddenInput = document.querySelector('#{{ product_form_id }} input[name="id"]');
-        const noScriptInputWrapper = document.createElement('div');
-        const variantSwitcher =
-          document.querySelector('variant-radios[data-section="{{ section.id }}"]') ||
-          document.querySelector('variant-selects[data-section="{{ section.id }}"]');
-        noScriptInputWrapper.innerHTML = document.querySelector(
-          '.product-form__noscript-wrapper-{{ section.id }}'
-        ).textContent;
-        variantSwitcher.outerHTML = noScriptInputWrapper.outerHTML;
+         if (!isIE()) return;
+         const hiddenInput = document.querySelector('#{{ product_form_id }} input[name="id"]');
+         const noScriptInputWrapper = document.createElement('div');
+         const variantSwitcher =
+           document.querySelector('variant-radios[data-section="{{ section.id }}"]') ||
+           document.querySelector('variant-selects[data-section="{{ section.id }}"]');
+         noScriptInputWrapper.innerHTML = document.querySelector(
+           '.product-form__noscript-wrapper-{{ section.id }}'
+         ).textContent;
+         variantSwitcher.outerHTML = noScriptInputWrapper.outerHTML;
 
-        document.querySelector('#Variants-{{ section.id }}').addEventListener('change', function (event) {
-          hiddenInput.value = event.currentTarget.value;
-        });
-      });
-      function checkAndRedirect() {
-        var currentUrl = window.location.href;
-        var hostUrl = window.location.origin;
-        var redirectUrl = hostUrl + "/products/handbag?variant=40632199577686";
-        var initialPageLoadUrl = hostUrl + "/products/handbag"
+         document.querySelector('#Variants-{{ section.id }}').addEventListener('change', function (event) {
+           hiddenInput.value = event.currentTarget.value;
+         });
+       });
+       function checkAndRedirect() {
+         var currentUrl = window.location.href;
+         var hostUrl = window.location.origin;
+         var redirectUrl = hostUrl + "/products/handbag?variant=40632199577686";
+         var initialPageLoadUrl = hostUrl + "/products/handbag"
 
-        if (currentUrl !== redirectUrl && currentUrl.includes("handbag") && currentUrl !== initialPageLoadUrl) {
-          // Set a flag to indicate that redirect has been performed
-          sessionStorage.setItem('redirected', true);
-          window.location.href = redirectUrl;
-        } else {
-          // Check if the redirect has been performed previously
-          var redirected = sessionStorage.getItem('redirected');
-          if (redirected) {
-            // Clear the flag
-            sessionStorage.removeItem('redirected');
-          }
-        }
-      }
-      window.onload = checkAndRedirect;
+         if (currentUrl !== redirectUrl && currentUrl.includes("handbag") && currentUrl !== initialPageLoadUrl) {
+           // Set a flag to indicate that redirect has been performed
+           sessionStorage.setItem('redirected', true);
+           window.location.href = redirectUrl;
+         } else {
+           // Check if the redirect has been performed previously
+           var redirected = sessionStorage.getItem('redirected');
+           if (redirected) {
+             // Clear the flag
+             sessionStorage.removeItem('redirected');
+           }
+         }
+       }
+      // window.onload = checkAndRedirect;
     </script>
 
     {%- liquid
