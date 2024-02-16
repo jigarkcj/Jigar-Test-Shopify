@@ -28,7 +28,7 @@
             name="{{ option.name }}"
             value="{{ value | escape }}"
             form="{{ product_form_id }}"
-            {% if variant.options[forloop.index0] == value %}
+            {% if product.selected_or_first_available_variant.options[forloop.index0] == value %}
               checked
             {% endif %}
           >
