@@ -24,17 +24,17 @@
         {{ block.shopify_attributes }}
       >
         {%- for option in product.options_with_values -%}
-          {% if option.name == type %}
-            <fieldset class="js product-form__input">
-              <legend class="form__label">{{ option.name }}</legend>
+          <fieldset class="js product-form__input">
+            <legend class="form__label">{{ option.name }}</legend>
+            {% if option.name == type %}
               {% render 'product-variant-options',
                 product: product,
                 option: option,
                 block: block,
                 variant_type: 'pills'
               %}
-            </fieldset>
-          {% endif %}
+            {% endif %}
+          </fieldset>
         {%- endfor -%}
         <script type="application/json">
           {{ product.variants | json }}
