@@ -65,9 +65,6 @@
     >
       <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
     </label>
-    {% if product.title == 'Handbag' %}
-      {% assign block.settings.picker_type = 'dropdwon' %}
-    {% endif %}
   {%- elsif block.settings.picker_type == 'dropdown' -%}
     <option
       value="{{ value | escape }}"
