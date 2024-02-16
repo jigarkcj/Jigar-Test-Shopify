@@ -20,11 +20,16 @@
     {% endif %}
     {{ block.shopify_attributes }}
   >
+    {%- assign rendered_options = '' %}
     {%- for option in product.options_with_values -%}
-      <fieldset class="js product-form__input">
-        <legend class="form__label">{{ option.name }}</legend>
-        {% render 'product-variant-options', product: product, option: option, block: block %}
-      </fieldset>
+      {% if option.name == 'Color' %}
+        {%- capture rendered_options -%}
+          {% render 'product-variant-options', product: product, option: option, block: block %}
+        {%- endcapture -%}
+        {% unless rendered_options contains 'product-variant-options' %}
+          {% render 'product-variant-options', product: product, option: option, block: block %}
+        {% endunless %}
+      {%- endif -%}
     {%- endfor -%}
     <script type="application/json">
       {{ product.variants | json }}
@@ -40,25 +45,17 @@
     {% endif %}
     {{ block.shopify_attributes }}
   >
+    {%- assign rendered_options = '' %}
     {%- for option in product.options_with_values -%}
-      <div class="product-form__input product-form__input--dropdown">
-        <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
-          {{ option.name }}
-        </label>
-        <div class="select">
-          <select
-            id="Option-{{ section.id }}-{{ forloop.index0 }}"
-            class="select__select"
-            name="options[{{ option.name | escape }}]"
-            form="{{ product_form_id }}"
-          >
-            {% render 'product-variant-options', product: product, option: option, block: block %}
-          </select>
-          {% render 'icon-caret' %}
-        </div>
-      </div>
+      {% if option.name == 'Size' %}
+        {%- capture rendered_options -%}
+          {% render 'product-variant-options', product: product, option: option, block: block %}
+        {%- endcapture -%}
+        {% unless rendered_options contains 'product-variant-options' %}
+          {% render 'product-variant-options', product: product, option: option, block: block %}
+        {% endunless %}
+      {%- endif -%}
     {%- endfor -%}
-
     <script type="application/json">
       {{ product.variants | json }}
     </script>
