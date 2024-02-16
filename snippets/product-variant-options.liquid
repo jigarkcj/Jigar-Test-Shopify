@@ -45,6 +45,12 @@
     endfor
   -%}
   {%- if block.settings.picker_type == 'button' -%}
+    {%- if product.title == 'handbag'- %}
+      {%- if option.name == 'Color' -%}
+      {% else %}
+
+      {% endif %}
+    {% endif %}
     <input
       type="radio"
       id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
