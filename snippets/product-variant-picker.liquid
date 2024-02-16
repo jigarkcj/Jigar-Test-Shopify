@@ -12,9 +12,7 @@
 {%- unless product.has_only_default_variant -%}
   {%- if block.settings.picker_type == 'button' -%}
     {% for option in product.options %}
-      {% if option == option_names[forloop.index0] %}
-        <p>Selected Variant Type: {{ option }}</p>
-      {% endif %}
+      <p>Selected Variant Type: {{ option }}</p>
     {% endfor %}
     <variant-radios
       id="variant-radios-{{ section.id }}"
