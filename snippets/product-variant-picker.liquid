@@ -10,9 +10,6 @@
   {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
 {%- unless product.has_only_default_variant -%}
-  {% if product.title == 'Handbag' %}
-    {% assign block.settings.picker_type = 'dropdown' %}
-  {% endif %}
   {%- if block.settings.picker_type == 'button' -%}
     <variant-radios
       id="variant-radios-{{ section.id }}"
