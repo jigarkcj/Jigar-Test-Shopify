@@ -46,6 +46,7 @@
   -%}
   {%- if block.settings.picker_type == 'button' -%}
     {%- if product.title == 'handbag' -%}
+      {{ option.name }}
       {%- if option.name == 'Color' -%}
         <input
           type="radio"
