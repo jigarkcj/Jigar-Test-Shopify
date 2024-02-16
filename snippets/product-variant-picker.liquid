@@ -17,7 +17,7 @@
     {{ block.shopify_attributes }}
   >
     {%- for option in product.options_with_values -%}
-      <fieldset class="js product-form__input {% unless forloop.first %}hidden{% endunless %}">
+      <fieldset class="js product-form__input {% if forloop.first and product.options_with_values.size > 1 %}hidden{% endif %}">
         <legend class="form__label">
           {{ option.name }}
         </legend>
