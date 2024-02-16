@@ -12,6 +12,7 @@
 {%- unless product.has_only_default_variant -%}
   {%- if block.settings.picker_type == 'button' -%}
     {%- for option in product.options_with_values -%}
+      {{ 'hello' }}
       {% if option.name == 'Color' %}
         <variant-radios
           id="variant-radios-{{ section.id }}"
