@@ -10,7 +10,7 @@
   {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
 {%- if block.settings.picker_type == 'button' -%}
-  {%- for option in product.options -%}
+  {%- for option in product.options_by_name -%}
     {{ option.name | append: 'test' }}
     {% if option.name == 'Color' %}
       <variant-radios
