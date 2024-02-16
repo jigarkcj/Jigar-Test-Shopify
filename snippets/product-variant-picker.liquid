@@ -23,7 +23,7 @@
         {% endif %}
         {{ block.shopify_attributes }}
       >
-        {%- for option in product.options_with_values -%}
+        {%- for option in product.options_by_name[type] -%}
           <fieldset class="js product-form__input">
             <legend class="form__label">{{ option.name }}</legend>
             {% render 'product-variant-options',
@@ -49,7 +49,7 @@
         {% endif %}
         {{ block.shopify_attributes }}
       >
-        {%- for option in product.options_with_values -%}
+        {%- for option in product..options_by_name[type] -%}
           <div class="product-form__input product-form__input--dropdown">
             <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
               {{ option.name }}
