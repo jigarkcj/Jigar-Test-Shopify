@@ -10,8 +10,9 @@
   {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
 {%- if block.settings.picker_type == 'button' -%}
-  {%- for option in product.options_with_values -%}
-    {% if option.name == 'Color' %}
+  {%- for type in product.options -%}
+    {{ type | append: 'test' }}
+    {% if type == 'Color' %}
       <variant-radios
         id="variant-radios-{{ section.id }}"
         class="no-js-hidden"
@@ -22,10 +23,19 @@
         {% endif %}
         {{ block.shopify_attributes }}
       >
-        <fieldset class="js product-form__input">
-          <legend class="form__label">{{ option.name }}</legend>
-          {% render 'product-variant-options', product: product, option: option, block: block, variant_type: 'pills' %}
-        </fieldset>
+        {%- for option in product.options_with_values -%}
+          <fieldset class="js product-form__input">
+            <legend class="form__label">{{ option.name }}</legend>
+            {% if option.name == type %}
+              {% render 'product-variant-options',
+                product: product,
+                option: option,
+                block: block,
+                variant_type: 'pills'
+              %}
+            {% endif %}
+          </fieldset>
+        {%- endfor -%}
         <script type="application/json">
           {{ product.variants | json }}
         </script>
@@ -41,27 +51,30 @@
         {% endif %}
         {{ block.shopify_attributes }}
       >
-        <div class="product-form__input product-form__input--dropdown">
-          <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
-            {{ option.name }}
-          </label>
-          <div class="select">
-            <select
-              id="Option-{{ section.id }}-{{ forloop.index0 }}"
-              class="select__select"
-              name="options[{{ option.name | escape }}]"
-              form="{{ product_form_id }}"
-            >
-              {% render 'product-variant-options',
-                product: product,
-                option: option,
-                block: block,
-                variant_type: 'dropdown'
-              %}
-            </select>
-            {% render 'icon-caret' %}
+        {%- for option in product.options_with_values -%}
+          <div class="product-form__input product-form__input--dropdown">
+            <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
+              {{ option.name }}
+            </label>
+            <div class="select">
+              <select
+                id="Option-{{ section.id }}-{{ forloop.index0 }}"
+                class="select__select"
+                name="options[{{ option.name | escape }}]"
+                form="{{ product_form_id }}"
+              >
+                {% render 'product-variant-options',
+                  product: product,
+                  option: option,
+                  block: block,
+                  variant_type: 'dropdown'
+                %}
+              </select>
+              {% render 'icon-caret' %}
+            </div>
           </div>
-        </div>
+        {%- endfor -%}
+
         <script type="application/json">
           {{ product.variants | json }}
         </script>
