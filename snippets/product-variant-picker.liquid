@@ -11,7 +11,7 @@
 {% endcomment %}
 {%- if block.settings.picker_type == 'button' -%}
   {%- for option in product.options_with_values -%}
-    {{ option.name }}
+    {{ option.name | append: 'test' }}
     {% if option.name == 'Color' %}
       <variant-radios
         id="variant-radios-{{ section.id }}"
