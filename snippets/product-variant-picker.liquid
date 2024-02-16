@@ -30,7 +30,7 @@
       {{ block.shopify_attributes }}
     >
       {%- for option in product.options_with_values -%}
-        {% if option == 'Color' %}
+        {% if option.name == 'Color' %}
           <fieldset class="js product-form__input {% unless forloop.first %}hidden{% endunless %}">
             <legend class="form__label">
               {{ option.name }}
@@ -70,7 +70,7 @@
       {{ block.shopify_attributes }}
     >
       {%- for option in product.options_with_values -%}
-        {% if option == 'Size' %}
+        {% if option.name == 'Size' %}
           <div class="product-form__input product-form__input--dropdown">
             <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
               {{ option.name }}
