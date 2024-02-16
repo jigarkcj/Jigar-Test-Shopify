@@ -52,29 +52,27 @@
         {{ block.shopify_attributes }}
       >
         {%- for option in product.options_with_values -%}
-          {% if option.name == type %}
-            <div class="product-form__input product-form__input--dropdown">
-              <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
-                {{ option.name }}
-              </label>
-              <div class="select">
-                <select
-                  id="Option-{{ section.id }}-{{ forloop.index0 }}"
-                  class="select__select"
-                  name="options[{{ option.name | escape }}]"
-                  form="{{ product_form_id }}"
-                >
-                  {% render 'product-variant-options',
-                    product: product,
-                    option: option,
-                    block: block,
-                    variant_type: 'dropdown'
-                  %}
-                </select>
-                {% render 'icon-caret' %}
-              </div>
+          <div class="product-form__input product-form__input--dropdown">
+            <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
+              {{ option.name }}
+            </label>
+            <div class="select">
+              <select
+                id="Option-{{ section.id }}-{{ forloop.index0 }}"
+                class="select__select"
+                name="options[{{ option.name | escape }}]"
+                form="{{ product_form_id }}"
+              >
+                {% render 'product-variant-options',
+                  product: product,
+                  option: option,
+                  block: block,
+                  variant_type: 'dropdown'
+                %}
+              </select>
+              {% render 'icon-caret' %}
             </div>
-          {% endif %}
+          </div>
         {%- endfor -%}
 
         <script type="application/json">
