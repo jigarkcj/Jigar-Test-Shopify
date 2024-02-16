@@ -31,6 +31,9 @@
         {{ product.variants | json }}
       </script>
     </variant-radios>
+    {% if product.title == 'Handbag' %}
+      {% assign block.settings.picker_type = 'dropdwon' %}
+    {% endif %}
   {%- else -%}
     <variant-selects
       id="variant-selects-{{ section.id }}"
