@@ -11,7 +11,7 @@
 {% endcomment %}
 {%- unless product.has_only_default_variant -%}
   {%- if block.settings.picker_type == 'button' -%}
-    {{ product.selected_or_first_available_variant }}
+    {{ product.variants[0].option1 }}
     <variant-radios
       id="variant-radios-{{ section.id }}"
       class="no-js-hidden"
