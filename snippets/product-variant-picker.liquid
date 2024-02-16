@@ -55,7 +55,7 @@
     {{ block.shopify_attributes }}
   >
     {%- for option in product.options_with_values -%}
-      <div class="product-form__input product-form__input--dropdown {% if forloop.first %}hidden{% endif %}">
+      <div class="product-form__input product-form__input--dropdown">
         <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
           {{ option.name }}
         </label>
