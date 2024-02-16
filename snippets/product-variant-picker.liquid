@@ -11,47 +11,38 @@
 {% endcomment %}
 {%- unless product.has_only_default_variant -%}
   <variant-radios
+    id="variant-radios-{{ section.id }}"
     class="no-js-hidden"
     data-section="{{ section.id }}"
     data-url="{{ product.url }}"
+    {% if update_url == false %}
+      data-update-url="false"
+    {% endif %}
     {{ block.shopify_attributes }}
   >
     {%- for option in product.options_with_values -%}
-      <fieldset class="js product-form__input {% unless forloop.first %}hidden{% endunless %}">
-        <legend class="form__label">
-          {{ option.name }}
-        </legend>
-        {%- for value in option.values -%}
-          <input
-            type="radio"
-            id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
-            name="{{ option.name }}"
-            value="{{ value | escape }}"
-            form="{{ product_form_id }}"
-            {% if option.selected_value == value %}
-              checked
-            {% endif %}
-          >
-          <label
-            for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
-            style="background-size:100%; height:50px; width:50px; background-image: url({{ 'https://cdn.shopify.com/s/files/1/0572/7987/3110/files/' | append: value | append: '.png' | downcase}});"
-          >
-          </label>
-        {%- endfor -%}
+      <fieldset class="js product-form__input">
+        <legend class="form__label">{{ option.name }}</legend>
+        {% render 'product-variant-options', product: product, option: option, block: block %}
       </fieldset>
     {%- endfor -%}
     <script type="application/json">
       {{ product.variants | json }}
     </script>
   </variant-radios>
+{%- else -%}
   <variant-selects
+    id="variant-selects-{{ section.id }}"
     class="no-js-hidden"
     data-section="{{ section.id }}"
     data-url="{{ product.url }}"
+    {% if update_url == false %}
+      data-update-url="false"
+    {% endif %}
     {{ block.shopify_attributes }}
   >
     {%- for option in product.options_with_values -%}
-      <div class="product-form__input product-form__input--dropdown {% if forloop.first %}hidden{% endif %}">
+      <div class="product-form__input product-form__input--dropdown">
         <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
           {{ option.name }}
         </label>
@@ -62,16 +53,7 @@
             name="options[{{ option.name | escape }}]"
             form="{{ product_form_id }}"
           >
-            {%- for value in option.values -%}
-              <option
-                value="{{ value | escape }}"
-                {% if option.selected_value == value %}
-                  selected="selected"
-                {% endif %}
-              >
-                {{ value }}
-              </option>
-            {%- endfor -%}
+            {% render 'product-variant-options', product: product, option: option, block: block %}
           </select>
           {% render 'icon-caret' %}
         </div>
