@@ -10,9 +10,9 @@
   {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
 {%- if block.settings.picker_type == 'button' -%}
-  {%- for option in product.options -%}
-    {{ option | append: 'test' }}
-    {% if option == 'Color' %}
+  {%- for type in product.options -%}
+    {{ type | append: 'test' }}
+    {% if type == 'Color' %}
       <variant-radios
         id="variant-radios-{{ section.id }}"
         class="no-js-hidden"
