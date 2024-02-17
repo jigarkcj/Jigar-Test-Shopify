@@ -60,7 +60,15 @@
           {% endif %}
           class="product-variant-id"
         >
-
+        <p class="line-item-property__field">
+          <label>Size</label><br>
+          <select id="size" name="properties[Size]">
+            <option value="Unselected">Unselected</option>
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
+          </select>
+        </p>
         {%- if gift_card_recipient_feature_active -%}
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
         {%- endif -%}
