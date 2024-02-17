@@ -54,7 +54,7 @@
         {% if product.title == 'Handbag' %}
           <p class="line-item-property__field">
             <label>Size</label><br>
-            <select id="size" name="properties[Size]">
+            <select id="size" name="properties[Size]" onchange="onVariantSizeChange()">
               <option value="Unselected">Unselected</option>
               <option value="Small">Small</option>
               <option value="Medium">Medium</option>
@@ -156,5 +156,13 @@
     </pickup-availability>
 
     <script src="{{ 'pickup-availability.js' | asset_url }}" defer="defer"></script>
+    <script>
+      function onVariantSizeChange() {
+        let selectedVariant = $('#size').value;
+        if (selectedVariant == 'Unselected') {
+          $('.product-form__submit').attr('disabled', 'disabled')
+        }
+      }
+    </script>
   {%- endif -%}
 </div>
