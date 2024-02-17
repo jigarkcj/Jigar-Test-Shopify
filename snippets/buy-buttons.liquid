@@ -157,11 +157,11 @@
 
     <script src="{{ 'pickup-availability.js' | asset_url }}" defer="defer"></script>
     <script>
-      function onVariantSizeChange() {
+        function onVariantSizeChange() {
         debugger;
-        let selectedVariant = $('#size').value;
+        let selectedVariant = document.getElementById('size').value;
         if (selectedVariant == 'Unselected') {
-          $('.product-form__submit').attr('disabled', 'disabled')
+          document.querySelector('.product-form__submit').setAttribute('disabled', 'disabled');
         }
       }
     </script>
