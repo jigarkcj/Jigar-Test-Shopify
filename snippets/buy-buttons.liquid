@@ -51,15 +51,6 @@
         novalidate: 'novalidate',
         data-type: 'add-to-cart-form'
       -%}
-        <input
-          type="hidden"
-          name="id"
-          value="{{ product.selected_or_first_available_variant.id }}"
-          {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
-            disabled
-          {% endif %}
-          class="product-variant-id"
-        >
         <p class="line-item-property__field">
           <label>Size</label><br>
           <select id="size" name="properties[Size]">
@@ -69,6 +60,15 @@
             <option value="Large">Large</option>
           </select>
         </p>
+        <input
+          type="hidden"
+          name="id"
+          value="{{ product.selected_or_first_available_variant.id }}"
+          {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
+            disabled
+          {% endif %}
+          class="product-variant-id"
+        >
         {%- if gift_card_recipient_feature_active -%}
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
         {%- endif -%}
