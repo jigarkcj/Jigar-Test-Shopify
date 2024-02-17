@@ -91,6 +91,7 @@ if (!customElements.get('product-form')) {
             console.error(e);
           })
           .finally(() => {
+            debugger;
             // variant id for LeatherBag (Black and Medium) is 40632205082710
             if (formData.get('id') == '40632205082710') {
                 let formData = {
