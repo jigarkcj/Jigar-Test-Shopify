@@ -59,7 +59,11 @@
         class="disabled"
       {% endif %}
     >
-    {% if option.name == 'Color' %}
+    <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+      {{ value -}}
+      <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
+    </label>
+    {% if option.name == 'TetColor' %}
       <label
         for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
         style="background-size:100%; height:50px; width:50px; background-image: url({{ 'https://cdn.shopify.com/s/files/1/0572/7987/3110/files/' | append: value | append: '.png' | downcase}});"
@@ -67,10 +71,7 @@
         <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
       </label>
     {% else %}
-      <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
-        {{ value -}}
-        <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
-      </label>
+
     {% endif %}
 
   {%- elsif block.settings.picker_type == 'dropdown' -%}
