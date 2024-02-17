@@ -163,7 +163,7 @@
         if (selectedVariant && selectedVariant == 'Unselected') {
           document.querySelector('.product-form__submit').setAttribute('disabled', 'disabled');
         } else {
-          document.querySelector('.product-form__submit').setAttribute('disabled', false);
+          document.querySelector('.product-form__submit').removeAttribute('disabled');
         }
       }
       window.onload = onVariantSizeChange();
