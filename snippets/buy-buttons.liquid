@@ -51,6 +51,15 @@
         novalidate: 'novalidate',
         data-type: 'add-to-cart-form'
       -%}
+        <p class="line-item-property__field">
+          <label>Size</label><br>
+          <select id="size" name="properties[Size]">
+            <option value="Unselected">Unselected</option>
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
+          </select>
+        </p>
         <input
           type="hidden"
           name="id"
