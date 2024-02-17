@@ -20,7 +20,7 @@
         {% assign size_arr = size_arr | concat: option.values %}
       {% endif %}
     {% endfor %}
-    {{ color_arr }}
+    {{ color_arr.size }}
     <variant-radios
       id="variant-radios-{{ section.id }}"
       class="no-js-hidden"
