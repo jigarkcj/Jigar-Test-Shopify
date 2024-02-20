@@ -22,7 +22,6 @@
 
   assign product_form_id = 'product-form-' | append: section.id
 -%}
-
 {%- for value in option.values -%}
   {%- liquid
     assign option_disabled = true
@@ -45,7 +44,7 @@
     endfor
   -%}
 
-  {%- if block.settings.picker_type == 'button' -%}
+  {%- if option.name == 'Color' -%}
     <input
       type="radio"
       id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
@@ -59,11 +58,13 @@
         class="disabled"
       {% endif %}
     >
-    <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
-      {{ value -}}
+    <label
+      for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+      style="background-size:100%; height:50px; width:50px; background-image: url({{ 'https://cdn.shopify.com/s/files/1/0572/7987/3110/files/' | append: value | append: '.png' | downcase}});"
+    >
       <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
     </label>
-  {%- elsif block.settings.picker_type == 'dropdown' -%}
+  {% elsif option.name == 'Size' %}
     <option
       value="{{ value | escape }}"
       {% if option.selected_value == value %}
@@ -76,5 +77,5 @@
         {{- value -}}
       {%- endif %}
     </option>
-  {%- endif -%}
+  {% endif %}
 {%- endfor -%}
