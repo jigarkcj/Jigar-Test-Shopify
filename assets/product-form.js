@@ -40,7 +40,6 @@ if (!customElements.get('product-form')) {
           this.cart.setActiveElement(document.activeElement);
         }
         config.body = formData;
-
         fetch(`${routes.cart_add_url}`, config)
           .then((response) => response.json())
           .then((response) => {
@@ -92,6 +91,30 @@ if (!customElements.get('product-form')) {
             console.error(e);
           })
           .finally(() => {
+            debugger;
+            // variant id for LeatherBag (Black and Medium) is 40632205082710 40655514632278
+            if (formData.get('id') == '40655514632278') {
+                let formData = {
+               'items': [{
+                'id': 40618704633942,
+                'quantity': 1
+                }]
+              };
+              fetch(window.Shopify.routes.root + 'cart/add.js', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+              })
+              .then(response => {
+                return response.json();
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+            }
+            
             this.submitButton.classList.remove('loading');
             if (this.cart && this.cart.classList.contains('is-empty')) this.cart.classList.remove('is-empty');
             if (!this.error) this.submitButton.removeAttribute('aria-disabled');

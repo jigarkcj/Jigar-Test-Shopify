@@ -94,6 +94,13 @@ function percentageSeen(element) {
 window.addEventListener('DOMContentLoaded', () => {
   initializeScrollAnimationTrigger();
   initializeScrollZoomAnimationTrigger();
+  // Get the <li> element for the leather bag thumbnail image
+  var listItem = document.getElementById('Slide-template--15140955750486__main-24701835837526');
+
+  if (listItem) {
+    // Hide the <li> element
+    listItem.style.display = 'none';
+  }
 });
 
 if (Shopify.designMode) {
